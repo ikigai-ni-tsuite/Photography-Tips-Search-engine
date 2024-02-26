@@ -12,12 +12,12 @@ BOT_NAME = "eventScrape"
 SPIDER_MODULES = ["eventScrape.spiders"]
 NEWSPIDER_MODULE = "eventScrape.spiders"
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "eventScrape (+http://www.yourdomain.com)"
+USER_AGENT='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -25,7 +25,7 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -65,6 +65,17 @@ ROBOTSTXT_OBEY = True
 #ITEM_PIPELINES = {
 #    "eventScrape.pipelines.EventscrapePipeline": 300,
 #}
+
+ITEM_PIPELINES = {
+   "eventScrape.pipelines.ContentPipeline": 200,
+   "eventScrape.pipelines.MongoDBPipeline": 70,
+}
+
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "EventScraper"
+MONGODB_COLLECTION = "data_websites"
+MONGODB_PIPELINE_SPIDER_NAME = "website1"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

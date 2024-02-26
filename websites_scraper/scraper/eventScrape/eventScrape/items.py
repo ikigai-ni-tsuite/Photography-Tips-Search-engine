@@ -7,6 +7,9 @@ import scrapy
 
 
 class EventscrapeItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    title = scrapy.Field(default=None)
+    link = scrapy.Field(default=None)
+    tags = scrapy.Field(default=None)
+    date = scrapy.Field(default=None)
+    place = scrapy.Field(default=None)
+    
